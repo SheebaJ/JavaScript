@@ -1,0 +1,76 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+     <div id="root">
+        
+    </div>
+    <script type="text/babel">
+        let arr=[];
+        fetch('https://jsonplaceholder.typicode.com/todos')
+        .then(response => response.json())
+        .then(d =>{ 
+            let r=d.map((i)=>{
+            return(
+                <div>
+                    <table border='1'><tr>
+                        <td>
+                    {i.id} </td><td>
+                    {i.title}</td></tr>
+                    </table>
+                </div>
+            )
+        });
+        ReactDOM.render(r,document.getElementById('root'));
+        });
+
+        
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <div id="root">
+    </div>
+    <script type="text/babel">
+        var rootHandle = document.getElementById('root');
+        axios.get(`https://jsonplaceholder.typicode.com/todos`)
+        .then((res) => {
+            console.log(res.data);
+            let data = res.data;
+            let div = (
+                <div>
+                    <h1>List TODO Titles</h1>
+                    {data.map((item, index) => {
+                        return (
+                            <p key={index}>{item.title}</p>
+                        )
+                    })}
+                </div>
+            );
+            ReactDOM.render(div, rootHandle);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    </script>
+</body>
+</html>
